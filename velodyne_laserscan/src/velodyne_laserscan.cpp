@@ -168,14 +168,15 @@ void VelodyneLaserScan::recvCallback(const sensor_msgs::PointCloud2ConstPtr& msg
   if ((offset_x >= 0) && (offset_y >= 0) && (offset_r >= 0))
   {
     const float RESOLUTION = std::abs(cfg_.resolution);
+ //   const size_t SIZE = 2.0 * M_PI / RESOLUTION;
     const size_t SIZE = 2.0 * M_PI / RESOLUTION;
     sensor_msgs::LaserScanPtr scan(new sensor_msgs::LaserScan());
     scan->header = msg->header;
     scan->angle_increment = RESOLUTION;
     scan->angle_min = -M_PI;
     scan->angle_max = M_PI;
-    scan->range_min = 0.0;
-    scan->range_max = 200.0;
+    scan->range_min = 1.0;
+    scan->range_max = 20.0;
     scan->time_increment = 0.0;
     scan->ranges.resize(SIZE, INFINITY);
 
